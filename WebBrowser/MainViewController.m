@@ -10,7 +10,7 @@
 #import "WKWebControlle.h"
 #import "TabBarView.h"
 
-@interface MainViewController ()
+@interface MainViewController ()<WKWebControllerDelegate>
 @property (nonatomic, retain) TabBarView *tabBar;
 @property (nonatomic, retain) TabBarItem *backItem;
 @property (nonatomic, retain) TabBarItem *forwardItem;
@@ -89,11 +89,11 @@
 
 -(void)backItemAction:(TabBarItem*)item {
     NSLog(@"%s",__FUNCTION__);
-//    [self.wvc goBack];
+    [self.wvc.webView goBack];
 }
 -(void)forwardItemAction:(TabBarItem*)item {
     NSLog(@"%s",__FUNCTION__);
-//    [self.wvc goForward];
+    [self.wvc.webView goForward];
 }
 -(void)panelItemAction:(TabBarItem*)item {
     NSLog(@"%s",__FUNCTION__);
@@ -119,6 +119,19 @@
 }
 
 #pragma mark -
+- (void)webController:(WKWebControlle*)webController canGoBackChange:(BOOL)canGoBack {
+    self.backItem.enabled = canGoBack;
+}
+
+- (void)webController:(WKWebControlle*)webController canGoForwardChange:(BOOL)canGoForward {
+    self.forwardItem.enabled = canGoForward;
+}
+
+- (void)webController:(WKWebControlle*)webController estimatedProgress:(double)progress {
+
+}
+
+#pragma mark -
 
 
 - (void)viewDidLoad {
@@ -133,6 +146,7 @@
     WKWebControlle *webVC = [[WKWebControlle alloc] init];
     webVC.delegate = (id<WKWebControllerDelegate>) self;
     [self addChildViewController:webVC];
+    [webVC loadWithUrl:@"www.baidu.com" params:nil];
     self.wvc = webVC;
     // Do any additional setup after loading the view.
 }
