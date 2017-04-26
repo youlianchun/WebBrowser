@@ -359,9 +359,9 @@ BOOL secureTextEntryIMP(id sender, SEL cmd) {
 #pragma mark - 截图
 
 -(UIImage*)screenshot {
-    UIGraphicsBeginImageContextWithOptions(self.bounds.size, true, 0);
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, YES, 0);
     for (UIView *subView in self.subviews) {
-        [subView drawViewHierarchyInRect:subView.bounds afterScreenUpdates:true];
+        [subView drawViewHierarchyInRect:subView.bounds afterScreenUpdates:YES];
     }
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
