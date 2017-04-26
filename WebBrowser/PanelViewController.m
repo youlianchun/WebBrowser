@@ -32,6 +32,7 @@
     if (!_panelView) {
         _panelView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _panelView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _panelView.showsVerticalScrollIndicator = NO;
         _panelView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, CGRectGetHeight(self.view.bounds)-self.cellHeight-65)];
         self.panelView.delegate = self;
         self.panelView.dataSource = self;
