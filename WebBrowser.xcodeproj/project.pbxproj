@@ -22,6 +22,10 @@
 		A92057571EADCE4E00317A19 /* WKWebControlle.m in Sources */ = {isa = PBXBuildFile; fileRef = A92057501EADCE4E00317A19 /* WKWebControlle.m */; };
 		A920575E1EADCF4D00317A19 /* JSExportModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A920575B1EADCF4D00317A19 /* JSExportModel.m */; };
 		A920575F1EADCF4D00317A19 /* JSExportModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A920575D1EADCF4D00317A19 /* JSExportModelManager.m */; };
+		A93A49741EAEE12B00F8C9C3 /* PanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A93A49731EAEE12B00F8C9C3 /* PanelViewController.m */; };
+		A93A49B41EB03A3500F8C9C3 /* PanelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A93A49B21EB03A3500F8C9C3 /* PanelTableViewCell.m */; };
+		A93A49B51EB03A3500F8C9C3 /* PanelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A93A49B31EB03A3500F8C9C3 /* PanelTableViewCell.xib */; };
+		A972BD801EB03CAF00D30081 /* PanelCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A972BD7F1EB03CAF00D30081 /* PanelCellItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +58,13 @@
 		A920575B1EADCF4D00317A19 /* JSExportModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSExportModel.m; sourceTree = "<group>"; };
 		A920575C1EADCF4D00317A19 /* JSExportModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSExportModelManager.h; sourceTree = "<group>"; };
 		A920575D1EADCF4D00317A19 /* JSExportModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSExportModelManager.m; sourceTree = "<group>"; };
+		A93A49721EAEE12B00F8C9C3 /* PanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelViewController.h; sourceTree = "<group>"; };
+		A93A49731EAEE12B00F8C9C3 /* PanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelViewController.m; sourceTree = "<group>"; };
+		A93A49B11EB03A3500F8C9C3 /* PanelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelTableViewCell.h; sourceTree = "<group>"; };
+		A93A49B21EB03A3500F8C9C3 /* PanelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelTableViewCell.m; sourceTree = "<group>"; };
+		A93A49B31EB03A3500F8C9C3 /* PanelTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PanelTableViewCell.xib; sourceTree = "<group>"; };
+		A972BD7E1EB03CAF00D30081 /* PanelCellItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelCellItem.h; sourceTree = "<group>"; };
+		A972BD7F1EB03CAF00D30081 /* PanelCellItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelCellItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +106,13 @@
 				A920572C1EADCE3200317A19 /* AppDelegate.m */,
 				A920573F1EADCE4E00317A19 /* MainViewController.h */,
 				A92057401EADCE4E00317A19 /* MainViewController.m */,
+				A93A49721EAEE12B00F8C9C3 /* PanelViewController.h */,
+				A93A49731EAEE12B00F8C9C3 /* PanelViewController.m */,
+				A972BD7E1EB03CAF00D30081 /* PanelCellItem.h */,
+				A972BD7F1EB03CAF00D30081 /* PanelCellItem.m */,
+				A93A49B11EB03A3500F8C9C3 /* PanelTableViewCell.h */,
+				A93A49B21EB03A3500F8C9C3 /* PanelTableViewCell.m */,
+				A93A49B31EB03A3500F8C9C3 /* PanelTableViewCell.xib */,
 				A920572E1EADCE3200317A19 /* ViewController.h */,
 				A920572F1EADCE3200317A19 /* ViewController.m */,
 				A92057311EADCE3200317A19 /* Main.storyboard */,
@@ -226,6 +244,7 @@
 			files = (
 				A92057381EADCE3200317A19 /* LaunchScreen.storyboard in Resources */,
 				A92057351EADCE3200317A19 /* Assets.xcassets in Resources */,
+				A93A49B51EB03A3500F8C9C3 /* PanelTableViewCell.xib in Resources */,
 				A92057331EADCE3200317A19 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,9 +256,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A93A49B41EB03A3500F8C9C3 /* PanelTableViewCell.m in Sources */,
+				A93A49741EAEE12B00F8C9C3 /* PanelViewController.m in Sources */,
 				A920575F1EADCF4D00317A19 /* JSExportModelManager.m in Sources */,
 				A92057561EADCE4E00317A19 /* WebView.m in Sources */,
 				A92057571EADCE4E00317A19 /* WKWebControlle.m in Sources */,
+				A972BD801EB03CAF00D30081 /* PanelCellItem.m in Sources */,
 				A92057301EADCE3200317A19 /* ViewController.m in Sources */,
 				A920575E1EADCF4D00317A19 /* JSExportModel.m in Sources */,
 				A92057521EADCE4E00317A19 /* PlayerPause.m in Sources */,

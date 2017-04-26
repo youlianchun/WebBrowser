@@ -356,6 +356,20 @@ BOOL secureTextEntryIMP(id sender, SEL cmd) {
 }
 
 
+#pragma mark - 截图
+
+-(UIImage*)screenshot {
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, true, 0);
+    for (UIView *subView in self.subviews) {
+        [subView drawViewHierarchyInRect:subView.bounds afterScreenUpdates:true];
+    }
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+
+
 #pragma mark - 响应间隔禁止
 -(void)userInteractionDisableWithTime:(double)interval {
     if(time<=0) {

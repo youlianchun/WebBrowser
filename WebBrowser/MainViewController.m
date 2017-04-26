@@ -9,8 +9,9 @@
 #import "MainViewController.h"
 #import "WKWebControlle.h"
 #import "TabBarView.h"
+#import "PanelViewController.h"
 
-@interface MainViewController ()<WKWebControllerDelegate>
+@interface MainViewController ()<WKWebControllerDelegate, PanelControllerDelegate>
 @property (nonatomic, retain) TabBarView *tabBar;
 @property (nonatomic, retain) TabBarItem *backItem;
 @property (nonatomic, retain) TabBarItem *forwardItem;
@@ -18,10 +19,26 @@
 @property (nonatomic, retain) TabBarItem *toolItem;
 @property (nonatomic, retain) TabBarItem *homeItem;
 @property (nonatomic, weak) WKWebControlle *wvc;
+@property (nonatomic) NSMutableArray<__kindof WKWebControlle*> *wvcArray;
+@property (nonatomic, retain) UIView *pView;
 @end
 
 @implementation MainViewController
 #pragma mark -
+-(UIView *)pView {
+    if (!_pView) {
+        _pView = [[UIView alloc] initWithFrame:CGRectZero];
+        _pView.clipsToBounds = YES;
+        [self.view addSubview:_pView];
+    }
+    return _pView;
+}
+-(NSMutableArray<WKWebControlle*> *)wvcArray {
+    if (!_wvcArray) {
+        _wvcArray = [NSMutableArray<WKWebControlle*> array];
+    }
+    return _wvcArray;
+}
 -(TabBarView *)tabBar {
     if (!_tabBar) {
         _tabBar = [[TabBarView alloc] init];
@@ -38,8 +55,8 @@
 -(TabBarItem *)backItem {
     if (!_backItem) {
         __weak typeof(self) wself = self;
-        _backItem = [[TabBarItem alloc]initWithNormalTitle:@"返回" normalIcon:[UIImage imageNamed:@""] action:^(TabBarItem *item) {
-            [wself backItemAction:item];
+        _backItem = [[TabBarItem alloc]initWithNormalTitle:@"后退" normalIcon:[UIImage imageNamed:@""] action:^(TabBarItem *item) {
+            [wself.wvc.webView goBack];
         }];
     }
     return _backItem;
@@ -49,7 +66,7 @@
     if (!_forwardItem) {
         __weak typeof(self) wself = self;
         _forwardItem = [[TabBarItem alloc]initWithNormalTitle:@"前进" normalIcon:[UIImage imageNamed:@""] action:^(TabBarItem *item) {
-            [wself forwardItemAction:item];
+            [wself.wvc.webView goForward];
         }];
     }
     return _forwardItem;
@@ -59,7 +76,7 @@
     if (!_panelItem) {
         __weak typeof(self) wself = self;
         _panelItem = [[TabBarItem alloc]initWithNormalTitle:@"面板" normalIcon:[UIImage imageNamed:@""] action:^(TabBarItem *item) {
-            [wself panelItemAction:item];
+            [PanelViewController displayWithDelegate:wself];
         }];
     }
     return _panelItem;
@@ -79,7 +96,7 @@
     if (!_homeItem) {
         __weak typeof(self) wself = self;
         _homeItem = [[TabBarItem alloc]initWithNormalTitle:@"主页" normalIcon:[UIImage imageNamed:@""] action:^(TabBarItem *item) {
-            [wself homeItemAction:item];
+            [wself.wvc loadWithUrl:@"www.baidu.com" params:nil];
         }];
     }
     return _homeItem;
@@ -102,19 +119,26 @@
     NSLog(@"%s",__FUNCTION__);
 }
 -(void)homeItemAction:(TabBarItem*)item {
-    NSLog(@"%s",__FUNCTION__);
+    [self.wvc loadWithUrl:@"www.baidu.com" params:nil];
 }
 
 #pragma mark - 
 
 -(void)setWvc:(WKWebControlle *)wvc {
     if (_wvc != wvc) {
+        [_wvc.view removeFromSuperview];
+        if (_wvc) {
+            [self.pView addSubview:_wvc.view];
+        }
+        if (wvc) {
+            _wvc.delegateEnabled = NO;
+            wvc.delegateEnabled = YES;
+            self.backItem.enabled = wvc.webView.canGoBack;
+            self.forwardItem.enabled = wvc.webView.canGoForward;
+            [wvc.view removeFromSuperview];
+            [self.view insertSubview:wvc.view atIndex:0];
+        }
         _wvc = wvc;
-        _wvc.delegateEnabled = NO;
-        wvc.delegateEnabled = YES;
-        self.backItem.enabled = wvc.webView.canGoBack;
-        self.forwardItem.enabled = wvc.webView.canGoForward;
-        [self.view insertSubview:wvc.view atIndex:0];
     }
 }
 
@@ -132,10 +156,70 @@
 }
 
 #pragma mark -
+-(NSInteger)numberOfItemAtPanelViewController:(PanelViewController*)panelViewController {
+    return self.wvcArray.count;
+}
+
+-(PanelCellItem*)panelViewController:(PanelViewController*)panelViewController itemAtIndex:(NSInteger)index {
+    WebView *webView = self.wvcArray[index].webView;
+    PanelCellItem *item = [[PanelCellItem alloc] init];
+    item.title = webView.title.length>0?webView.title:webView.URL.absoluteString;
+    item.image = webView.screenshot;
+    return item;
+}
+
+-(void)panelViewController:(PanelViewController*)panelViewController didSelectItemAtIndex:(NSInteger)index {
+    [self changeWVCToIndex:index];
+}
+
+-(void)panelViewController:(PanelViewController*)panelViewController deleteItemAtIndex:(NSInteger)index {
+    [self deleteWebVCWithIndex:index];
+}
+
+#pragma mark -
+
+-(void)addWebVCWithUrl:(NSString*)url toCurrent:(BOOL)toCurrent {
+    WKWebControlle *webVC = [[WKWebControlle alloc] init];
+    webVC.delegate = (id<WKWebControllerDelegate>) self;
+    webVC.delegateEnabled = toCurrent;
+    [self.wvcArray addObject:webVC];
+    [webVC loadWithUrl:url params:nil];
+    [self.pView addSubview:webVC.view];
+    if (toCurrent) {
+        [self changeWVCToIndex:self.wvcArray.count-1];
+    }
+}
+
+-(void)deleteWebVCWithIndex:(NSUInteger)index {
+    if (index<self.wvcArray.count) {
+        WKWebControlle *wvc = self.wvcArray[index];
+        if (wvc == self.wvc) {
+            if (index>0) {//前面有页面
+                [self changeWVCToIndex:index-1];
+            }else if (self.wvcArray.count-1>index){//后面有页面
+                [self changeWVCToIndex:index+1];
+            }
+        }else {
+            [wvc.view removeFromSuperview];
+        }
+        [wvc removeFromParentViewController];
+    }
+    if (self.wvcArray.count == 0) {
+        [self addWebVCWithUrl:@"www.baidu.com" toCurrent:YES];
+    }
+}
+
+-(void)changeWVCToIndex:(NSInteger)index {
+    WKWebControlle *wvc = self.wvcArray[index];
+    self.wvc = wvc;
+}
+
+#pragma mark -
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor redColor];
     self.tabBar.items = @[
                           self.backItem,
                           self.forwardItem,
@@ -143,11 +227,11 @@
                           self.toolItem,
                           self.homeItem
                           ];
-    WKWebControlle *webVC = [[WKWebControlle alloc] init];
-    webVC.delegate = (id<WKWebControllerDelegate>) self;
-    [self addChildViewController:webVC];
-    [webVC loadWithUrl:@"www.baidu.com" params:nil];
-    self.wvc = webVC;
+    
+    [self addWebVCWithUrl:@"www.baidu.com" toCurrent:YES];
+    
+    [self addWebVCWithUrl:@"http://www.cocoachina.com/bbs/index.php" toCurrent:NO];
+    
     // Do any additional setup after loading the view.
 }
 

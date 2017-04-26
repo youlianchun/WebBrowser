@@ -99,6 +99,7 @@
         anUrl = url;
     }
     if (anUrl) {
+        [self.webView stopLoading];
         NSString *str = [anUrl.absoluteString lowercaseString];
         BOOL loactionUrl = [str hasPrefix:@"/"] || [str hasPrefix:@"file://"];
         if (loactionUrl) {

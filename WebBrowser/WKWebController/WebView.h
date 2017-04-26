@@ -24,6 +24,7 @@
 #pragma clang diagnostic ignored"-Wobjc-property-synthesis"
 @property (nonatomic, weak) id <WKWebNavigationDelegate> navigationDelegate;
 #pragma clang diagnostic pop
+@property (nonatomic, readonly) UIImage *screenshot;
 
 -(id)evaluateJSFunc:(NSString*)func arguments:(NSArray*)arguments;
 
