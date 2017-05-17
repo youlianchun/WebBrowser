@@ -136,6 +136,7 @@
             self.backItem.enabled = wvc.webView.canGoBack;
             self.forwardItem.enabled = wvc.webView.canGoForward;
             [wvc.view removeFromSuperview];
+            wvc.view.frame = self.view.bounds;
             [self.view insertSubview:wvc.view atIndex:0];
         }
         _wvc = wvc;
@@ -231,6 +232,8 @@
     [self addWebVCWithUrl:@"www.baidu.com" toCurrent:YES];
     
     [self addWebVCWithUrl:@"http://www.cocoachina.com/bbs/index.php" toCurrent:NO];
+    [self addWebVCWithUrl:@"http://events.upbox.com.cn/17SSFL5-SP/article.html?url=https://www.upbox.com.cn/2017/ssfl_news/hzjz-2017-sc5rz-xcp/&type=170" toCurrent:NO];
+
     
     // Do any additional setup after loading the view.
 }

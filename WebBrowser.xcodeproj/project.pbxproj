@@ -26,6 +26,7 @@
 		A93A49B41EB03A3500F8C9C3 /* PanelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A93A49B21EB03A3500F8C9C3 /* PanelTableViewCell.m */; };
 		A93A49B51EB03A3500F8C9C3 /* PanelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A93A49B31EB03A3500F8C9C3 /* PanelTableViewCell.xib */; };
 		A972BD801EB03CAF00D30081 /* PanelCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A972BD7F1EB03CAF00D30081 /* PanelCellItem.m */; };
+		A9D0FEE01EC9A4A500898FEC /* UIViewController+Dismis_FileUploadPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D0FEDF1EC9A4A500898FEC /* UIViewController+Dismis_FileUploadPanel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,8 @@
 		A93A49B31EB03A3500F8C9C3 /* PanelTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PanelTableViewCell.xib; sourceTree = "<group>"; };
 		A972BD7E1EB03CAF00D30081 /* PanelCellItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelCellItem.h; sourceTree = "<group>"; };
 		A972BD7F1EB03CAF00D30081 /* PanelCellItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelCellItem.m; sourceTree = "<group>"; };
+		A9D0FEDE1EC9A4A500898FEC /* UIViewController+Dismis_FileUploadPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Dismis_FileUploadPanel.h"; sourceTree = "<group>"; };
+		A9D0FEDF1EC9A4A500898FEC /* UIViewController+Dismis_FileUploadPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Dismis_FileUploadPanel.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +167,8 @@
 		A920574C1EADCE4E00317A19 /* WKWebController */ = {
 			isa = PBXGroup;
 			children = (
+				A9D0FEDE1EC9A4A500898FEC /* UIViewController+Dismis_FileUploadPanel.h */,
+				A9D0FEDF1EC9A4A500898FEC /* UIViewController+Dismis_FileUploadPanel.m */,
 				A920574D1EADCE4E00317A19 /* WebView.h */,
 				A920574E1EADCE4E00317A19 /* WebView.m */,
 				A920574F1EADCE4E00317A19 /* WKWebControlle.h */,
@@ -266,6 +271,7 @@
 				A92057301EADCE3200317A19 /* ViewController.m in Sources */,
 				A920575E1EADCF4D00317A19 /* JSExportModel.m in Sources */,
 				A92057521EADCE4E00317A19 /* PlayerPause.m in Sources */,
+				A9D0FEE01EC9A4A500898FEC /* UIViewController+Dismis_FileUploadPanel.m in Sources */,
 				A920572D1EADCE3200317A19 /* AppDelegate.m in Sources */,
 				A92057551EADCE4E00317A19 /* UIViewController+FullScreen.m in Sources */,
 				A92057541EADCE4E00317A19 /* TabBarView.m in Sources */,

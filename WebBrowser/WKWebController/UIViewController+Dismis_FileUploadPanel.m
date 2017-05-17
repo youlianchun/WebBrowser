@@ -1,24 +1,24 @@
 //
 //  UIViewController+Dismis.m
-//  WKWebView_Bug
+//  WebView_FileUploadBug
 //
 //  Created by YLCHUN on 2017/4/27.
 //  Copyright © 2017年 ylchun. All rights reserved.
 //
 
-#import "UIViewController+Dismis_WKFileUploadPanel.h"
+#import "UIViewController+Dismis_FileUploadPanel.h"
 #import <objc/runtime.h>
 
 @interface UIViewController ()
-@property (nonatomic) BOOL WKFileUploadPanelFlag;
+@property (nonatomic) BOOL FileUploadPanelFlag;
 @end
-@implementation UIViewController (Dismis_WKFileUploadPanel)
+@implementation UIViewController (Dismis_FileUploadPanel)
 
--(BOOL)WKFileUploadPanelFlag {
-    return [objc_getAssociatedObject(self, @selector(WKFileUploadPanelFlag)) boolValue];
+-(BOOL)FileUploadPanelFlag {
+    return [objc_getAssociatedObject(self, @selector(FileUploadPanelFlag)) boolValue];
 }
--(void)setWKFileUploadPanelFlag:(BOOL)WKFileUploadPanelFlag {
-    objc_setAssociatedObject(self, @selector(WKFileUploadPanelFlag), @(WKFileUploadPanelFlag), OBJC_ASSOCIATION_RETAIN);
+-(void)setFileUploadPanelFlag:(BOOL)FileUploadPanelFlag {
+    objc_setAssociatedObject(self, @selector(FileUploadPanelFlag), @(FileUploadPanelFlag), OBJC_ASSOCIATION_RETAIN);
 }
 
 + (void)load {
@@ -49,15 +49,16 @@
     });
 }
 
+
 -(void)_dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion {
-    static BOOL dismisFromWKFileUploadPanel = NO;
-    if (!dismisFromWKFileUploadPanel) {
+    static BOOL dismisFromFileUploadPanel = NO;
+    if (!dismisFromFileUploadPanel) {
         [self _dismissViewControllerAnimated:flag completion:^{
             if (completion) {
-                if (self.WKFileUploadPanelFlag) {
-                    dismisFromWKFileUploadPanel = YES;
+                if (self.FileUploadPanelFlag) {
+                    dismisFromFileUploadPanel = YES;
                     completion();
-                    dismisFromWKFileUploadPanel = NO;
+                    dismisFromFileUploadPanel = NO;
                 }else{
                     completion();
                 }
@@ -69,8 +70,9 @@
 -(void)_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
     if ([viewControllerToPresent isKindOfClass:[UIDocumentMenuViewController class]]) {
         UIDocumentMenuViewController *dvc = (UIDocumentMenuViewController*)viewControllerToPresent;
-        if ([dvc.delegate isKindOfClass:NSClassFromString(@"WKFileUploadPanel")]) {
-            self.WKFileUploadPanelFlag = YES;
+        if ([dvc.delegate isKindOfClass:NSClassFromString(@"WKFileUploadPanel")] || [dvc.delegate isKindOfClass:NSClassFromString(@"UIWebFileUploadPanel")]) {
+            self.FileUploadPanelFlag = YES;
+            dvc.FileUploadPanelFlag = YES;
         }
     }
     [self _presentViewController:viewControllerToPresent animated:flag completion:completion];

@@ -17,6 +17,8 @@
 
 -(void)webView:(WKWebView *)webView canGoForwardChange:(BOOL)canGoForward;
 
+-(void)webView:(WKWebView *)webView titleChange:(NSString*)title;
+
 @end
 
 @interface WebView : WKWebView

@@ -12,6 +12,7 @@
 static NSString* kWebViewEstimatedProgress = @"estimatedProgress";
 static NSString*  kWebViewCanGoBack = @"canGoBack";
 static NSString*  kWebViewCanGoForward = @"canGoForward";
+static NSString*  kWebViewTitle = @"title";
 
 @interface WebView ()
 @property (nonatomic, readwrite, weak) id navigationDelegateReceiver;
@@ -122,10 +123,13 @@ BOOL secureTextEntryIMP(id sender, SEL cmd) {
         [self addObserver:self forKeyPath:kWebViewEstimatedProgress options:NSKeyValueObservingOptionNew context:nil];
         [self addObserver:self forKeyPath:kWebViewCanGoBack options:NSKeyValueObservingOptionNew context:nil];
         [self addObserver:self forKeyPath:kWebViewCanGoForward options:NSKeyValueObservingOptionNew context:nil];
+        [self addObserver:self forKeyPath:kWebViewTitle options:NSKeyValueObservingOptionNew context:nil];
     }else{
         [self removeObserver:self forKeyPath:kWebViewEstimatedProgress];
         [self removeObserver:self forKeyPath:kWebViewCanGoBack];
         [self removeObserver:self forKeyPath:kWebViewCanGoForward];
+        [self removeObserver:self forKeyPath:kWebViewTitle];
+
     }
 }
 
@@ -138,8 +142,12 @@ BOOL secureTextEntryIMP(id sender, SEL cmd) {
         [self.navigationDelegate webView:self canGoBackChange:self.canGoBack];
         return;
     }
-    if ([keyPath isEqualToString:kWebViewCanGoForward]&& [self.navigationDelegate respondsToSelector:@selector(webView:canGoForwardChange:)]) {
+    if ([keyPath isEqualToString:kWebViewCanGoForward] && [self.navigationDelegate respondsToSelector:@selector(webView:canGoForwardChange:)]) {
         [self.navigationDelegate webView:self canGoForwardChange:self.canGoForward];
+        return;
+    }
+    if ([keyPath isEqualToString:kWebViewTitle] && [self.navigationDelegate respondsToSelector:@selector(webView:titleChange:)]) {
+        [self.navigationDelegate webView:self titleChange:self.title];
         return;
     }
 }
@@ -265,14 +273,6 @@ BOOL secureTextEntryIMP(id sender, SEL cmd) {
     return paramStr;
 }
 
-//-(NSString*)argumentsJSON:(NSArray*)arguments {
-//    NSString *paramsJSON = [self convertToJSONData:arguments];
-//    NSRange range= NSMakeRange(1,paramsJSON.length-2);
-//    paramsJSON = [paramsJSON substringWithRange:range];
-//    paramsJSON = [self JSONString:paramsJSON];
-//    return paramsJSON;
-//}
-
 -(NSString*)JSONString:(NSString*)string{
     NSString *paramsJSON = string;
     paramsJSON = [paramsJSON stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
@@ -330,15 +330,11 @@ BOOL secureTextEntryIMP(id sender, SEL cmd) {
         //                                                        ]];
         //// All kinds of data
         NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
-        
         //// Date from
         NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
-        
         //// Execute
         [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
-            
             // Done
-            
         }];
     } else {
         
@@ -372,21 +368,13 @@ BOOL secureTextEntryIMP(id sender, SEL cmd) {
 
 #pragma mark - 响应间隔禁止
 -(void)userInteractionDisableWithTime:(double)interval {
-    if(time<=0) {
+    if(time <= 0 && !self.userInteractionEnabled) {
         return;
     }
     self.userInteractionEnabled = NO;
-    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, DISPATCH_TARGET_QUEUE_DEFAULT);
-    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, interval * NSEC_PER_SEC, 0);
-    dispatch_source_set_event_handler(timer, ^{
-        dispatch_source_cancel(timer);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(interval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.userInteractionEnabled = YES;
     });
-    dispatch_source_set_cancel_handler(timer, ^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.userInteractionEnabled = YES;
-        });
-    });
-    dispatch_resume(timer);
 }
 
 #pragma mark - 代理拦截

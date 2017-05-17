@@ -234,7 +234,7 @@
 
 
 -(void)webView:(WebView *)webView estimatedProgress:(double)progress {
-    self.progressView.progress = progress;
+    [self.progressView setProgress:progress animated:YES];
     if (self.delegateEnabled && [self.delegate respondsToSelector:@selector(webController:estimatedProgress:)]) {
         [self.delegate webController:self estimatedProgress:progress];
     }
