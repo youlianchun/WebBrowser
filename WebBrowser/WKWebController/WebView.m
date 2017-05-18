@@ -208,7 +208,9 @@ BOOL secureTextEntryIMP(id sender, SEL cmd) {
 
 #pragma mark - 滚动速率
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
+    if (scrollView.contentSize.height>scrollView.bounds.size.height*1.5) {//html页面高度小于1.5倍webView高度时候不做速率处理
+        scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
+    }
 }
 
 
