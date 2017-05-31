@@ -20,13 +20,12 @@
 		A92057551EADCE4E00317A19 /* UIViewController+FullScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = A920574B1EADCE4E00317A19 /* UIViewController+FullScreen.m */; };
 		A92057561EADCE4E00317A19 /* WebView.m in Sources */ = {isa = PBXBuildFile; fileRef = A920574E1EADCE4E00317A19 /* WebView.m */; };
 		A92057571EADCE4E00317A19 /* WKWebControlle.m in Sources */ = {isa = PBXBuildFile; fileRef = A92057501EADCE4E00317A19 /* WKWebControlle.m */; };
-		A920575E1EADCF4D00317A19 /* JSExportModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A920575B1EADCF4D00317A19 /* JSExportModel.m */; };
-		A920575F1EADCF4D00317A19 /* JSExportModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A920575D1EADCF4D00317A19 /* JSExportModelManager.m */; };
 		A93A49741EAEE12B00F8C9C3 /* PanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A93A49731EAEE12B00F8C9C3 /* PanelViewController.m */; };
 		A93A49B41EB03A3500F8C9C3 /* PanelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A93A49B21EB03A3500F8C9C3 /* PanelTableViewCell.m */; };
 		A93A49B51EB03A3500F8C9C3 /* PanelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A93A49B31EB03A3500F8C9C3 /* PanelTableViewCell.xib */; };
 		A972BD801EB03CAF00D30081 /* PanelCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A972BD7F1EB03CAF00D30081 /* PanelCellItem.m */; };
 		A9D0FEE01EC9A4A500898FEC /* UIViewController+Dismis_FileUploadPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D0FEDF1EC9A4A500898FEC /* UIViewController+Dismis_FileUploadPanel.m */; };
+		A9F0C6AF1EDEC190006E8613 /* JSTrade.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F0C6AE1EDEC190006E8613 /* JSTrade.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,11 +53,6 @@
 		A920574E1EADCE4E00317A19 /* WebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebView.m; sourceTree = "<group>"; };
 		A920574F1EADCE4E00317A19 /* WKWebControlle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebControlle.h; sourceTree = "<group>"; };
 		A92057501EADCE4E00317A19 /* WKWebControlle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebControlle.m; sourceTree = "<group>"; };
-		A92057591EADCF4D00317A19 /* JSExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSExport.h; sourceTree = "<group>"; };
-		A920575A1EADCF4D00317A19 /* JSExportModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSExportModel.h; sourceTree = "<group>"; };
-		A920575B1EADCF4D00317A19 /* JSExportModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSExportModel.m; sourceTree = "<group>"; };
-		A920575C1EADCF4D00317A19 /* JSExportModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSExportModelManager.h; sourceTree = "<group>"; };
-		A920575D1EADCF4D00317A19 /* JSExportModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSExportModelManager.m; sourceTree = "<group>"; };
 		A93A49721EAEE12B00F8C9C3 /* PanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelViewController.h; sourceTree = "<group>"; };
 		A93A49731EAEE12B00F8C9C3 /* PanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelViewController.m; sourceTree = "<group>"; };
 		A93A49B11EB03A3500F8C9C3 /* PanelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelTableViewCell.h; sourceTree = "<group>"; };
@@ -68,6 +62,7 @@
 		A972BD7F1EB03CAF00D30081 /* PanelCellItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelCellItem.m; sourceTree = "<group>"; };
 		A9D0FEDE1EC9A4A500898FEC /* UIViewController+Dismis_FileUploadPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Dismis_FileUploadPanel.h"; sourceTree = "<group>"; };
 		A9D0FEDF1EC9A4A500898FEC /* UIViewController+Dismis_FileUploadPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Dismis_FileUploadPanel.m"; sourceTree = "<group>"; };
+		A9F0C6AE1EDEC190006E8613 /* JSTrade.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JSTrade.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9F0C6AF1EDEC190006E8613 /* JSTrade.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +96,7 @@
 		A92057271EADCE3200317A19 /* WebBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				A92057581EADCF4D00317A19 /* JSExport */,
+				A9F0C6AE1EDEC190006E8613 /* JSTrade.framework */,
 				A92057411EADCE4E00317A19 /* PlayerPause */,
 				A92057441EADCE4E00317A19 /* TabBar */,
 				A92057491EADCE4E00317A19 /* ViewControllerFullScreen */,
@@ -175,18 +171,6 @@
 				A92057501EADCE4E00317A19 /* WKWebControlle.m */,
 			);
 			path = WKWebController;
-			sourceTree = "<group>";
-		};
-		A92057581EADCF4D00317A19 /* JSExport */ = {
-			isa = PBXGroup;
-			children = (
-				A92057591EADCF4D00317A19 /* JSExport.h */,
-				A920575A1EADCF4D00317A19 /* JSExportModel.h */,
-				A920575B1EADCF4D00317A19 /* JSExportModel.m */,
-				A920575C1EADCF4D00317A19 /* JSExportModelManager.h */,
-				A920575D1EADCF4D00317A19 /* JSExportModelManager.m */,
-			);
-			path = JSExport;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,12 +248,10 @@
 			files = (
 				A93A49B41EB03A3500F8C9C3 /* PanelTableViewCell.m in Sources */,
 				A93A49741EAEE12B00F8C9C3 /* PanelViewController.m in Sources */,
-				A920575F1EADCF4D00317A19 /* JSExportModelManager.m in Sources */,
 				A92057561EADCE4E00317A19 /* WebView.m in Sources */,
 				A92057571EADCE4E00317A19 /* WKWebControlle.m in Sources */,
 				A972BD801EB03CAF00D30081 /* PanelCellItem.m in Sources */,
 				A92057301EADCE3200317A19 /* ViewController.m in Sources */,
-				A920575E1EADCF4D00317A19 /* JSExportModel.m in Sources */,
 				A92057521EADCE4E00317A19 /* PlayerPause.m in Sources */,
 				A9D0FEE01EC9A4A500898FEC /* UIViewController+Dismis_FileUploadPanel.m in Sources */,
 				A920572D1EADCE3200317A19 /* AppDelegate.m in Sources */,
@@ -400,6 +382,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5ATRCX89M9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WebBrowser",
+				);
 				INFOPLIST_FILE = WebBrowser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ppsports.ylchun.WebBrowser;
@@ -412,6 +398,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5ATRCX89M9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WebBrowser",
+				);
 				INFOPLIST_FILE = WebBrowser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ppsports.ylchun.WebBrowser;

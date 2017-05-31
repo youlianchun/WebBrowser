@@ -9,7 +9,7 @@
 #import "WebView.h"
 #import <objc/runtime.h>
 
-static NSString* kWebViewEstimatedProgress = @"estimatedProgress";
+static NSString*  kWebViewEstimatedProgress = @"estimatedProgress";
 static NSString*  kWebViewCanGoBack = @"canGoBack";
 static NSString*  kWebViewCanGoForward = @"canGoForward";
 static NSString*  kWebViewTitle = @"title";
